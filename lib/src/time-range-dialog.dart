@@ -103,6 +103,7 @@ showTimeRangePicker({
   /// TextStyle of the currently moving time text
   TextStyle activeTimeTextStyle,
 
+  String message="",
   /// hide the time texts
   bool hideTimes = false,
   TransitionBuilder builder,
@@ -146,6 +147,7 @@ showTimeRangePicker({
     timeTextStyle: timeTextStyle,
     activeTimeTextStyle: activeTimeTextStyle,
     hideTimes: hideTimes,
+    message: message,
   );
 
   return await showDialog<TimeRange>(
@@ -206,8 +208,11 @@ class _TimeRangePicker extends StatefulWidget {
 
   final bool hideTimes;
 
+  final String message;
+
   _TimeRangePicker({
     Key key,
+    this.message,
     this.start,
     this.end,
     this.disabledTime,

@@ -37,6 +37,7 @@ class ClockPainter extends CustomPainter {
   bool rotateLabels;
   bool autoAdjustLabels;
   TextPainter _textPainter;
+  String message;
   get startHandlerPosition {
     return _startHandlerPosition;
   }
@@ -46,7 +47,8 @@ class ClockPainter extends CustomPainter {
   }
 
   ClockPainter(
-      {@required this.startAngle,
+      {
+        @required this.startAngle,
       @required this.endAngle,
       @required this.disabledStartAngle,
       @required this.disabledEndAngle,
