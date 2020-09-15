@@ -47,7 +47,7 @@ class ClockPainter extends CustomPainter {
   }
 
   ClockPainter(
-      {
+      {@required this.message,
         @required this.startAngle,
       @required this.endAngle,
       @required this.disabledStartAngle,

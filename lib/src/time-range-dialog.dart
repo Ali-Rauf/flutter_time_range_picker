@@ -212,7 +212,7 @@ class _TimeRangePicker extends StatefulWidget {
 
   _TimeRangePicker({
     Key key,
-    this.message,
+    this.message="message",
     this.start,
     this.end,
     this.disabledTime,
@@ -256,7 +256,7 @@ class _TimeRangePickerState extends State<_TimeRangePicker>
   ActiveTime _activeTime;
   double _startAngle = 0;
   double _endAngle = 0;
-
+  //String message;    //adkjhcksahlchlkajclksjlkklnslkanzdknsaklcnklsncl
   double _disabledStartAngle;
   double _disabledEndAngle;
 
@@ -452,6 +452,7 @@ class _TimeRangePickerState extends State<_TimeRangePicker>
   }
 
   _submit() {
+
     Navigator.of(context)
         .pop(TimeRange(startTime: _startTime, endTime: _endTime));
   }
@@ -610,48 +611,64 @@ class _TimeRangePickerState extends State<_TimeRangePicker>
     }
 
     return Container(
-      color: backgroundColor,
+      color: Colors.black,
       padding: EdgeInsets.all(24),
       child: Flex(
         direction: landscape ? Axis.vertical : Axis.horizontal,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(
-            children: [
-              Text(widget.fromText, style: TextStyle(color: activeColor)),
-              Text(
-                _startTime != null ? _startTime.format(context) : "-",
-                style: _activeTime == ActiveTime.Start
-                    ? widget.activeTimeTextStyle ??
-                        TextStyle(
-                            color: activeColor,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold)
-                    : widget.timeTextStyle ??
-                        TextStyle(
-                            color: inactiveColor,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold),
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Column(
+                    children: [
+                      Text(widget.fromText, style: TextStyle(color: activeColor)),
+                      Text(
+                        _startTime != null ? _startTime.format(context) : "-",
+                        style: _activeTime == ActiveTime.Start
+                            ? widget.activeTimeTextStyle ??
+                            TextStyle(
+                                color: activeColor,
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold)
+                            : widget.timeTextStyle ??
+                            TextStyle(
+                                color: inactiveColor,
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 20,),
+                  Column(children: [
+                    Text(widget.toText, style: TextStyle(color: activeColor)),
+                    Text(
+                      _endTime != null ? _endTime.format(context) : "-",
+                      style: _activeTime == ActiveTime.End
+                          ? widget.activeTimeTextStyle ??
+                          TextStyle(
+                              color: activeColor,
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold)
+                          : widget.timeTextStyle ??
+                          TextStyle(
+                              color: inactiveColor,
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold),
+                    ),
+
+                  ]),
+                ],
               ),
+
+              Text(widget.message ?? "", style: TextStyle(color: Colors.redAccent)),
             ],
+
           ),
-          Column(children: [
-            Text(widget.toText, style: TextStyle(color: activeColor)),
-            Text(
-              _endTime != null ? _endTime.format(context) : "-",
-              style: _activeTime == ActiveTime.End
-                  ? widget.activeTimeTextStyle ??
-                      TextStyle(
-                          color: activeColor,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold)
-                  : widget.timeTextStyle ??
-                      TextStyle(
-                          color: inactiveColor,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold),
-            ),
-          ])
+
+
+
         ],
       ),
     );
